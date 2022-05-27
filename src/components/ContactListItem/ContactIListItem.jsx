@@ -29,7 +29,7 @@ export const ContactListItem = ({ id, name, number }) => {
   // const [deleteContact, { isLoading }] = useDeleteContactMutation();
   // const { data: contacts } = useFetchContactsQuery();
 
-  const { register, handleSubmit, resetField } = useForm({
+  const { register, handleSubmit /*resetField*/ } = useForm({
     defaultValues: {
       name,
       phone: number,
