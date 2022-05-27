@@ -1,15 +1,16 @@
-// import { Container } from 'components/Container/Container.styled';
+import { useSelector } from 'react-redux';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Navigation } from 'components/Navigation/Navigation';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { HeaderSection } from './Header.styled';
+import { authSelectors } from 'redux/auth';
 
 export const Header = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <HeaderSection>
       <Navigation />
-      <AuthNav />
-      <UserMenu />
+      {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </HeaderSection>
   );
 };

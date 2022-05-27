@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import {
   FormTitle,
   Form,
@@ -8,12 +10,13 @@ import {
 } from '../RegisterForm/RegisterForm.styled.jsx';
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, resetField } = useForm();
 
   const onSubmit = data => {
     console.log('login: ', data);
+    dispatch(authOperations.logIn(data));
 
-    resetField('name');
     resetField('email');
     resetField('password');
   };
@@ -33,16 +36,16 @@ export const LoginForm = () => {
           />
         </FormLabel>
         <FormLabel>
-          Passwort
+          Password
           <FormInput
-            {...register('paswort')}
-            type="paswort"
+            {...register('password')}
+            type="password"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             autoComplete="off"
           />
         </FormLabel>
-        <FormButton type="submit">Registered</FormButton>
+        <FormButton type="submit">Login</FormButton>
       </Form>
     </>
   );

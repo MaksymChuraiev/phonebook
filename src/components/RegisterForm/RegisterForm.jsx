@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { authOperations } from '../../redux/auth';
 import {
   FormTitle,
   Form,
@@ -8,11 +10,12 @@ import {
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
   const { register, handleSubmit, resetField } = useForm();
 
   const onSubmit = data => {
     console.log('register: ', data);
-
+    dispatch(authOperations.register(data));
     resetField('name');
     resetField('email');
     resetField('password');
