@@ -4,19 +4,28 @@ import contactsOperation from './contacts-operation';
 const initialState = {
   items: [],
   filter: '',
+  isLoading: true,
 };
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
-  extraReducers: {
-    [contactsOperation.fetchContacts.fulfilled](state, action) {
-      state.items = action.payload;
+  reducers: {
+    addFilter: (state, action) => {
+      state.filter = action.payload;
     },
-    [contactsOperation.addContacts.fulfilled](state, action) {
-      state = action.payload;
+  },
+  extraReducers: {
+    [contactsOperation.fetchContacts.fulfilled]: (state, action) => {
+      state.items = action.payload;
+      state.items.push(action.payload);
+      state.isLoading = false;
+    },
+    [contactsOperation.addContacts.fulfilled]: (state, action) => {
+      state.items = [...state.items, action.payload];
+      state.isLoading = false;
     },
   },
 });
-
+export const { addFilter } = contactsSlice.actions;
 export default contactsSlice.reducer;

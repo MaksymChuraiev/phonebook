@@ -10,9 +10,9 @@ const fetchContacts = createAsyncThunk('contacts/fetch', async () => {
   }
 });
 
-const addContacts = createAsyncThunk('contacts/add', async () => {
+const addContacts = createAsyncThunk('contacts/add', async contact => {
   try {
-    const { data } = await axios.post('/contacts');
+    const { data } = await axios.post('/contacts', contact);
     return data;
   } catch (error) {
     console.log(error);

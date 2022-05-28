@@ -1,15 +1,14 @@
 import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getFilter, addFilter } from 'redux/contactSlice';
+import { useDispatch } from 'react-redux';
+import { addFilter } from 'redux/contacts/contacts-slice';
 import { ContactFilterLabel, ContactFilterInput } from './ContactFilter.styled';
 
 export const ContactFilter = () => {
-  // const filterItems = useSelector(getFilter);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const filterContact = e => {
     console.log(e.target.value);
-    // dispatch(addFilter(e.target.value));
+    dispatch(addFilter(e.target.value));
   };
 
   return (
@@ -24,8 +23,3 @@ export const ContactFilter = () => {
     </ContactFilterLabel>
   );
 };
-
-// ContactFilter.propTypes = {
-//   value: PropTypes.string.isRequired,
-//   onChange: PropTypes.func.isRequired,
-// };

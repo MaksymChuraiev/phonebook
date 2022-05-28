@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
-// import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperation } from 'redux/contacts';
+import { contactsSelectors } from 'redux/contacts';
 import {
   FormTitle,
   Form,
@@ -9,59 +10,30 @@ import {
   FormInput,
   FormButton,
 } from './ContactForm.styled';
-// import {
-//   useAddContactMutation,
-//   useFetchContactsQuery,
-// } from 'redux/contactSlice';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const contacts = useSelector(contactsSelectors.getContacts);
   const { register, handleSubmit, resetField } = useForm();
-
-  // const { data: contacts } = useFetchContactsQuery();
-  // const [createContact] = useAddContactMutation();
 
   const onSubmit = async data => {
     console.log(data);
+
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      )
+    ) {
+      return toast.error(`${data.name} is already in contacts.`);
+    }
+
     dispatch(contactsOperation.addContacts(data));
 
     resetField('name');
     resetField('number');
-    // const newContact = {
-    //   name: data.name,
-    //   phone: data.number,
-    // };
 
-    // if (
-    //   contacts.some(
-    //     contact => contact.name.toLowerCase() === data.name.toLowerCase()
-    //   )
-    // ) {
-    //   return toast.error(`${data.name} is already in contacts.`);
-    // }
-
-    // try {
-    //   await createContact(newContact).unwrap();
-
-    // resetField('name');
-    // resetField('number');
-
-    //   toast.success(`${data.name} was created!`);
-    // } catch (error) {
-    //   toast.error(`${error}`);
-    // }
+    toast.success(`${data.name} was created!`);
   };
-
-  // const addContact = (data, newContact) => {
-  //   // if (
-  //   //   contactItems.some(
-  //   //     contact => contact.name.toLowerCase() === data.name.toLowerCase()
-  //   //   )
-  //   // ) {
-  //   //   return toast.error(`${data.name} is already in contacts.`);
-  //   // }
-  //   // return dispatch(createContacts(newContact));
-  // };
 
   return (
     <>
