@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { Loader } from './Loader/Loader';
-import { Header } from './Header/Header';
+import Layout from './Layout/Layout';
+
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
@@ -23,38 +24,39 @@ export const App = () => {
 
   return (
     <>
-      <Header />
       {isFetching ? (
         <Loader />
       ) : (
         <>
           <Suspense fallback={<Loader />}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route
-                path="/register"
-                element={
-                  <PublicRoute>
-                    <RegisterPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <PublicRoute>
-                    <LoginPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="/contacts"
-                element={
-                  <PrivateRoute>
-                    <ContactsPage />
-                  </PrivateRoute>
-                }
-              />
+              <Route path="/" element={<Layout />}>
+                <Route index element={<HomePage />} />
+                <Route
+                  path="register"
+                  element={
+                    <PublicRoute>
+                      <RegisterPage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="login"
+                  element={
+                    <PublicRoute>
+                      <LoginPage />
+                    </PublicRoute>
+                  }
+                />
+                <Route
+                  path="contacts"
+                  element={
+                    <PrivateRoute>
+                      <ContactsPage />
+                    </PrivateRoute>
+                  }
+                />
+              </Route>
             </Routes>
           </Suspense>
           <Toaster />

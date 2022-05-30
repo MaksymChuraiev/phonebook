@@ -1,19 +1,19 @@
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { ContactNameList } from './ContactList.styled';
 import { ContactListItem } from 'components/ContactListItem/ContactIListItem';
-import { /*useDispatch,*/ useSelector } from 'react-redux';
-import { /*contactsOperation,*/ contactsSelectors } from 'redux/contacts';
-
-// import { Loader } from 'components/Loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsOperation, contactsSelectors } from 'redux/contacts';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactList = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getContacts);
   const filter = useSelector(contactsSelectors.getFilter);
+  const isFetching = useSelector(contactsSelectors.isFetching);
 
-  // useEffect(() => {
-  //   dispatch(contactsOperation.addContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(contactsOperation.fetchContacts());
+  }, [dispatch]);
 
   const getContactsList = () => {
     const filterValue = filter.toLowerCase().trim();
@@ -29,7 +29,7 @@ export const ContactList = () => {
   return (
     <>
       <ContactNameList>
-        {/* {isFetching && <Loader />} */}
+        {isFetching && <Loader />}
         {contacts &&
           getContactsList().map(({ name, number, id }) => (
             <ContactListItem key={id} id={id} name={name} number={number} />

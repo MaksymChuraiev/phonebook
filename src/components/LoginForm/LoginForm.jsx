@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { authOperations } from '../../redux/auth';
+import { toast } from 'react-hot-toast';
 import {
   FormTitle,
   Form,
@@ -14,8 +15,8 @@ export const LoginForm = () => {
   const { register, handleSubmit, resetField } = useForm();
 
   const onSubmit = data => {
-    console.log('login: ', data);
     dispatch(authOperations.logIn(data));
+    toast.success('Logged in successfully!');
 
     resetField('email');
     resetField('password');

@@ -7,10 +7,13 @@ import { authSelectors } from 'redux/auth';
 
 export const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isFetching = useSelector(authSelectors.getIsFetching);
+
   return (
     <HeaderSection>
       <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      {isLoggedIn && <UserMenu />}
+      {!isLoggedIn && !isFetching && <AuthNav />}
     </HeaderSection>
   );
 };

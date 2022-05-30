@@ -7,7 +7,7 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
   return (
     <UserMenuWrap>
-      <UserMenuText>Hello {name}</UserMenuText>
+      <UserMenuText>Hello, {name}</UserMenuText>
       <UserMenuButton
         type="button"
         onClick={() => dispatch(authOperations.logOut())}
