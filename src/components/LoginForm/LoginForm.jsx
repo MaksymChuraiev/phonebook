@@ -8,6 +8,7 @@ import {
   FormLabel,
   FormInput,
   FormButton,
+  RegisterButtonIcon,
 } from '../RegisterForm/RegisterForm.styled.jsx';
 
 export const LoginForm = () => {
@@ -46,7 +47,9 @@ export const LoginForm = () => {
             autoComplete="off"
           />
         </FormLabel>
-        <FormButton type="submit">Login</FormButton>
+        <FormButton type="submit">
+          <RegisterButtonIcon />
+        </FormButton>
       </Form>
     </>
   );

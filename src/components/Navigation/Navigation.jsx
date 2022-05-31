@@ -2,16 +2,22 @@ import {
   NavigationList,
   NavigationItem,
   NavigationLink,
+  HomeIcon,
+  ContactsIcon,
 } from './Navigation.styled';
 
 export const Navigation = () => {
   return (
     <NavigationList>
       <NavigationItem>
-        <NavigationLink to="/">H</NavigationLink>
+        <NavigationLink to="/">
+          <HomeIcon />
+        </NavigationLink>
       </NavigationItem>
       <NavigationItem>
-        <NavigationLink to="/contacts">C</NavigationLink>
+        <NavigationLink to="/contacts">
+          <ContactsIcon />
+        </NavigationLink>
       </NavigationItem>
     </NavigationList>
   );

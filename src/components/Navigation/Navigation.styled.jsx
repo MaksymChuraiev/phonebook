@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa';
+import { RiContactsBookFill } from 'react-icons/ri';
 
 export const NavigationList = styled.ul`
   position: relative;
@@ -31,7 +33,7 @@ export const NavigationLink = styled(NavLink)`
   box-shadow: 0 5px 45px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: top 0.5s, z-index 0s, transform 0.5s;
-  transition-delay: 0.5s, 0s, 0s;
+  transition-delay: 0.5s, 0.5s, 0s;
 
   &:hover {
     transition-delay: 0s, 0.5s, 0.5s;
@@ -56,3 +58,7 @@ export const NavigationLink = styled(NavLink)`
     transform: skewX(45deg) translateX(-150px);
   }
 `;
+
+export const HomeIcon = styled(FaHome)``;
+
+export const ContactsIcon = styled(RiContactsBookFill)``;

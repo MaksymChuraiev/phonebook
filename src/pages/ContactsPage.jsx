@@ -1,15 +1,20 @@
 import { ContactFilter } from 'components/ContactFilter/ContactFilter';
 import { ContactForm } from 'components/ContactForm/ContactForm';
+import {
+  FormWrap,
+  ContactPageWrap,
+} from 'components/ContactForm/ContactForm.styled';
 import { ContactList } from 'components/ContactList/ContactList';
-import { Container } from 'components/Container/Container.styled';
 
 const ContactsPage = () => {
   return (
-    <Container>
-      <ContactForm />
-      <ContactFilter />
+    <ContactPageWrap>
+      <FormWrap>
+        <ContactForm />
+        <ContactFilter />
+      </FormWrap>
       <ContactList />
-    </Container>
+    </ContactPageWrap>
   );
 };
 

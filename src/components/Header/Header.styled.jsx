@@ -4,7 +4,7 @@ export const HeaderSection = styled.header`
   position: relative;
   margin: 0 auto;
   /* background: linear-gradient(to bottom, #ff4f8b, #dff1ff); */
-  width: 1280px;
+  /* width: 1280px; */
   display: flex;
   justify-content: space-around;
 

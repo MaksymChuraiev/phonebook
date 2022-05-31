@@ -1,4 +1,9 @@
-import { UserMenuWrap, UserMenuText, UserMenuButton } from './UserMenu.styled';
+import {
+  UserMenuWrap,
+  UserMenuText,
+  UserMenuButton,
+  ExitIcon,
+} from './UserMenu.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from 'redux/auth';
 
@@ -12,7 +17,7 @@ export const UserMenu = () => {
         type="button"
         onClick={() => dispatch(authOperations.logOut())}
       >
-        Exit
+        <ExitIcon />
       </UserMenuButton>
     </UserMenuWrap>
   );

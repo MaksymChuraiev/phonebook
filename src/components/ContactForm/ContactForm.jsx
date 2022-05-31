@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { contactsOperation } from 'redux/contacts';
 import { contactsSelectors } from 'redux/contacts';
 import {
-  FormTitle,
   Form,
   FormLabel,
   FormInput,
   FormButton,
+  AddIcon,
 } from './ContactForm.styled';
 
 export const ContactForm = () => {
@@ -37,7 +37,6 @@ export const ContactForm = () => {
 
   return (
     <>
-      <FormTitle>Phonebook</FormTitle>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <FormLabel>
           Name
@@ -60,7 +59,9 @@ export const ContactForm = () => {
           />
         </FormLabel>
 
-        <FormButton type="submit">Add contact</FormButton>
+        <FormButton type="submit">
+          <AddIcon />
+        </FormButton>
       </Form>
     </>
   );

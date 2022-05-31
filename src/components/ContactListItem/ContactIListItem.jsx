@@ -46,12 +46,6 @@ export const ContactListItem = ({ id, name, number }) => {
   };
 
   const onSubmit = async contact => {
-    // if (
-    //   contacts.some(el => el.name.toLowerCase() === contact.name.toLowerCase())
-    // ) {
-    //   return toast.error(`${contact.name} is already in contacts.`);
-    // }
-
     dispatch(contactsOperation.removeContacts({ id, ...contact }));
 
     toast.success(`${contact.name} has been changed!`);
