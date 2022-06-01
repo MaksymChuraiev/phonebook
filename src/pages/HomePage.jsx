@@ -1,9 +1,10 @@
 import { Container } from 'components/Container/Container.styled';
+import { HomeSection } from 'components/HomeSection/HomeSection';
 
 const HomePage = () => {
   return (
     <Container>
-      <p>Home</p>
+      <HomeSection />
     </Container>
   );
 };

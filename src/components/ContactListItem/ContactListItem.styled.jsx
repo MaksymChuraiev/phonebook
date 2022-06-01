@@ -1,8 +1,12 @@
 import styled from '@emotion/styled';
+import { MdDelete } from 'react-icons/md';
+import { MdModeEditOutline } from 'react-icons/md';
+import { MdCancel } from 'react-icons/md';
+import { IoCheckmarkDoneCircle } from 'react-icons/io5';
 
 export const ContactNameItem = styled.li`
   position: relative;
-  padding: 20px 10px 10px 10px;
+
   margin-bottom: 10px;
   min-height: 60px;
   background: rgba(255, 255, 255, 0.1);
@@ -16,6 +20,7 @@ export const ContactNameItem = styled.li`
   overflow: hidden;
 `;
 export const ContactTextWrap = styled.div`
+  padding: 20px 10px 10px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -39,11 +44,15 @@ export const ContactListButton = styled.button`
   cursor: pointer;
   position: relative;
   top: 0;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   margin-left: 10px;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
+  font-size: 1.5em;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -80,10 +89,12 @@ export const FormInputWrap = styled.div`
 `;
 export const FormInputName = styled.input`
   width: 65%;
-  height: 60px;
+  height: 52px;
+  /* margin-top: -40px;
+  margin-left: -10px; */
   border: none;
   outline: none;
-  padding: 10px 20px;
+  padding: 10px 10px 5px 10px;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 20px;
@@ -99,10 +110,10 @@ export const FormInputName = styled.input`
 export const FormInputNumber = styled.input`
   width: 35%;
   margin-left: 10px;
-  height: 60px;
+  height: 52px;
   border: none;
   outline: none;
-  padding: 10px 20px;
+  padding: 10px 10px 5px 10px;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-size: 20px;
@@ -115,15 +126,25 @@ export const FormInputNumber = styled.input`
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 `;
+
+export const FormButtonWrap = styled.div`
+  display: flex;
+  padding-bottom: 10px;
+`;
+
 export const FormButton = styled.button`
   cursor: pointer;
   position: relative;
   top: 0;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 10px;
   margin-top: 10px;
   color: #fff;
+  font-size: 1.5em;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
@@ -150,3 +171,8 @@ export const FormButton = styled.button`
     transform: skewX(45deg) translateX(-150px);
   }
 `;
+
+export const DeleteIcon = styled(MdDelete)``;
+export const EditIcon = styled(MdModeEditOutline)``;
+export const CancelIcon = styled(MdCancel)``;
+export const DoneIcon = styled(IoCheckmarkDoneCircle)``;

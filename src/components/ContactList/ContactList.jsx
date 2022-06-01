@@ -9,7 +9,7 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(contactsSelectors.getContacts);
   const filter = useSelector(contactsSelectors.getFilter);
-  const isFetching = useSelector(contactsSelectors.isFetching);
+  const isLoading = useSelector(contactsSelectors.isLoading);
 
   useEffect(() => {
     dispatch(contactsOperation.fetchContacts());
@@ -29,11 +29,16 @@ export const ContactList = () => {
   return (
     <>
       <ContactNameList>
-        {isFetching && <Loader />}
-        {contacts &&
-          getContactsList().map(({ name, number, id }) => (
-            <ContactListItem key={id} id={id} name={name} number={number} />
-          ))}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {contacts &&
+              getContactsList().map(({ name, number, id }) => (
+                <ContactListItem key={id} id={id} name={name} number={number} />
+              ))}
+          </>
+        )}
       </ContactNameList>
     </>
   );

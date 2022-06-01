@@ -70,7 +70,11 @@ export const FormButton = styled.button`
   width: 60px;
   height: 60px;
   margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
+  font-size: 1.5em;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);

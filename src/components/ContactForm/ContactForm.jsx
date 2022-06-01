@@ -60,7 +60,7 @@ export const ContactForm = () => {
         </FormLabel>
 
         <FormButton type="submit">
-          <AddIcon />
+          <AddIcon height="24" />
         </FormButton>
       </Form>
     </>

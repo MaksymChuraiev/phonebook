@@ -12,17 +12,22 @@ import {
   FormInputWrap,
   FormInputName,
   FormInputNumber,
+  FormButtonWrap,
   FormButton,
+  DeleteIcon,
+  EditIcon,
+  CancelIcon,
+  DoneIcon,
 } from './ContactListItem.styled';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { contactsOperation } from 'redux/contacts';
+import { useDispatch, useSelector } from 'react-redux';
+import { contactsOperation, contactsSelectors } from 'redux/contacts';
 
 export const ContactListItem = ({ id, name, number }) => {
   const [showButton, setShowButton] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
-  // const contacts = useSelector(contactsSelectors.getContacts);
+  const isLoading = useSelector(contactsSelectors.isLoading);
   const dispatch = useDispatch();
 
   const { register, handleSubmit, resetField } = useForm({
@@ -72,17 +77,24 @@ export const ContactListItem = ({ id, name, number }) => {
                   initial={{ height: 0 }}
                   animate={{ height: 'auto' }}
                   exit={{ height: 0 }}
-                  style={{ overflow: 'hidden' }}
+                  style={{
+                    overflow: 'hidden',
+                    display: 'flex',
+                    paddingBottom: '10px',
+                  }}
                   transition={{ duration: 0.5 }}
                 >
                   <ContactListButton
                     onClick={() => onDeleteContact(id)}
-                    // disabled={isLoading}
+                    disabled={isLoading}
                   >
-                    Delete
+                    <DeleteIcon />
                   </ContactListButton>
-                  <ContactListButton onClick={() => onShowEditForm()}>
-                    Edit
+                  <ContactListButton
+                    onClick={() => onShowEditForm()}
+                    disabled={isLoading}
+                  >
+                    <EditIcon />
                   </ContactListButton>
                 </motion.div>
               )}
@@ -107,15 +119,19 @@ export const ContactListItem = ({ id, name, number }) => {
                 autoComplete="off"
               />
             </FormInputWrap>
-            <FormButton
-              onClick={() => {
-                onShowButton();
-                onShowEditForm();
-              }}
-            >
-              Back
-            </FormButton>
-            <FormButton type="submit">Edit</FormButton>
+            <FormButtonWrap>
+              <FormButton
+                onClick={() => {
+                  onShowButton();
+                  onShowEditForm();
+                }}
+              >
+                <CancelIcon />
+              </FormButton>
+              <FormButton type="submit">
+                <DoneIcon />
+              </FormButton>
+            </FormButtonWrap>
           </Form>
         )}
       </ContactNameItem>

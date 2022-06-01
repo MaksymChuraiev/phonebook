@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
-import { MdOutlineAppRegistration } from 'react-icons/md';
+import { AiOutlineFileDone } from 'react-icons/ai';
 import { ImEnter } from 'react-icons/im';
 
 export const AuthNavList = styled.ul`
@@ -58,5 +58,5 @@ export const AuthNavLink = styled(NavLink)`
   }
 `;
 
-export const RegisterIcon = styled(MdOutlineAppRegistration)``;
+export const RegisterIcon = styled(AiOutlineFileDone)``;
 export const LoginIcon = styled(ImEnter)``;
