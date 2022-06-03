@@ -1,4 +1,6 @@
+import { useSelector } from 'react-redux';
 import { useSpring, animated } from 'react-spring';
+import { authSelectors } from 'redux/auth';
 import {
   FirstEl,
   ElWrap,
@@ -6,13 +8,18 @@ import {
   ThirdEl,
   FourthEl,
   FifthEl,
+  SixthEl,
+  SeventhEl,
   ElText,
   HomeSectionTitle,
+  RegisterText,
+  RegisterLink,
   MyPageLink,
   MyPageLinkText,
 } from './HomeSection.styled';
 
 export const HomeSection = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const styles = useSpring({
     loop: true,
     to: [
@@ -25,6 +32,16 @@ export const HomeSection = () => {
   return (
     <>
       <HomeSectionTitle>Welcome to the phone book!</HomeSectionTitle>
+
+      {!isLoggedIn && (
+        <RegisterText>
+          Please
+          <RegisterLink to="/register"> register </RegisterLink>
+          or
+          <RegisterLink to="/login"> login</RegisterLink>!
+        </RegisterText>
+      )}
+
       <ElWrap>
         <FirstEl>
           <ElText>Your mother</ElText>
@@ -46,6 +63,14 @@ export const HomeSection = () => {
           <ElText>Your daughter</ElText>
           <ElText>555-55-55</ElText>
         </FifthEl>
+        <SixthEl>
+          <ElText>Your wife</ElText>
+          <ElText>555-55-55</ElText>
+        </SixthEl>
+        <SeventhEl>
+          <ElText>Your husband</ElText>
+          <ElText>555-55-55</ElText>
+        </SeventhEl>
       </ElWrap>
       <MyPageLink href="https://github.com/MaksymChuraiev">
         <animated.div style={styles}>

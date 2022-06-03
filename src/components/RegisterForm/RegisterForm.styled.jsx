@@ -78,6 +78,15 @@ export const FormInput = styled.input`
     color: rgba(255, 255, 255, 0.5);
   }
 `;
+
+export const FormErrorMessage = styled.p`
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  font-size: 10px;
+  color: #ff359b;
+`;
+
 export const FormButton = styled.button`
   cursor: pointer;
   margin-top: 20px;

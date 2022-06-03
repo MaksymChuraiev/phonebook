@@ -8,16 +8,28 @@ import {
   FormLabel,
   FormInput,
   FormButton,
+  FormErrorMessage,
   RegisterButtonIcon,
 } from '../RegisterForm/RegisterForm.styled.jsx';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, resetField } = useForm();
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = data => {
-    dispatch(authOperations.logIn(data));
-    toast.success('Logged in successfully!');
+    dispatch(authOperations.logIn(data))
+      .unwrap()
+      .then(() => {
+        return toast.success('Logged in successfully!');
+      })
+      .catch(() => {
+        return toast.error('No success!');
+      });
 
     resetField('email');
     resetField('password');
@@ -30,19 +42,26 @@ export const LoginForm = () => {
         <FormLabel>
           Email
           <FormInput
-            {...register('email')}
             type="email"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            {...register('email', {
+              required: true,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'Enter a valid e-mail address',
+              },
+            })}
             required
             autoComplete="off"
           />
+          {errors.email && (
+            <FormErrorMessage>{errors.email.message}</FormErrorMessage>
+          )}
         </FormLabel>
         <FormLabel>
           Password
           <FormInput
             {...register('password')}
             type="password"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             autoComplete="off"
           />

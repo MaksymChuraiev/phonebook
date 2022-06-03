@@ -1,11 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
+
 import { Loader } from './Loader/Loader';
 import Layout from './Layout/Layout';
-
 import { Toaster } from 'react-hot-toast';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
+
 import PrivateRoute from './Routes/PrivateRoute';
 import PublicRoute from './Routes/PublicRoute';
 

@@ -10,6 +10,7 @@ import { authSelectors, authOperations } from 'redux/auth';
 export const UserMenu = () => {
   const name = useSelector(authSelectors.getUserName);
   const dispatch = useDispatch();
+
   return (
     <UserMenuWrap>
       <UserMenuText>Hello, {name}!</UserMenuText>

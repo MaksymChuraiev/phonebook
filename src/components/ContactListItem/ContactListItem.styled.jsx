@@ -90,8 +90,6 @@ export const FormInputWrap = styled.div`
 export const FormInputName = styled.input`
   width: 65%;
   height: 52px;
-  /* margin-top: -40px;
-  margin-left: -10px; */
   border: none;
   outline: none;
   padding: 10px 10px 5px 10px;

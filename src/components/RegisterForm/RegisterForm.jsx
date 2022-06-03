@@ -8,16 +8,28 @@ import {
   FormLabel,
   FormInput,
   FormButton,
+  FormErrorMessage,
   RegisterButtonIcon,
 } from './RegisterForm.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, resetField } = useForm();
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = data => {
-    dispatch(authOperations.register(data));
-    toast.success('Registration completed!');
+    dispatch(authOperations.register(data))
+      .unwrap()
+      .then(() => {
+        return toast.success('Registration completed!');
+      })
+      .catch(() => {
+        return toast.error('Registration failed!');
+      });
 
     resetField('name');
     resetField('email');
@@ -32,7 +44,7 @@ export const RegisterForm = () => {
           Name
           <FormInput
             {...register('name')}
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            title="Name may contain only letters, apostrophe, dash and spaces."
             required
             autoComplete="off"
           />
@@ -40,19 +52,26 @@ export const RegisterForm = () => {
         <FormLabel>
           Email
           <FormInput
-            {...register('email')}
+            {...register('email', {
+              required: true,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: 'Enter a valid e-mail address',
+              },
+            })}
             type="email"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             autoComplete="off"
           />
+          {errors.email && (
+            <FormErrorMessage>{errors.email.message}</FormErrorMessage>
+          )}
         </FormLabel>
         <FormLabel>
           Password
           <FormInput
             {...register('password')}
             type="password"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             autoComplete="off"
           />

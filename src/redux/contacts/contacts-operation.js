@@ -18,7 +18,8 @@ const addContacts = createAsyncThunk(
       thunkAPI.dispatch(fetchContacts());
       return data;
     } catch (error) {
-      console.log(error);
+      thunkAPI.rejectWithValue(error)
+    
     }
   }
 );
@@ -31,7 +32,7 @@ const deleteContacts = createAsyncThunk(
       thunkAPI.dispatch(fetchContacts());
       return data;
     } catch (error) {
-      console.log(error);
+      thunkAPI.rejectWithValue(error)
     }
   }
 );
@@ -46,7 +47,7 @@ const removeContacts = createAsyncThunk(
       thunkAPI.dispatch(fetchContacts());
       return data;
     } catch (error) {
-      console.log(error);
+      thunkAPI.rejectWithValue(error)
     }
   }
 );

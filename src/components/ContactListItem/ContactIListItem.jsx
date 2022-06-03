@@ -47,7 +47,7 @@ export const ContactListItem = ({ id, name, number }) => {
 
   const onDeleteContact = id => {
     dispatch(contactsOperation.deleteContacts(id));
-    toast.success(`${name}has been deleted!`);
+    toast.success(`${name} has been deleted!`);
   };
 
   const onSubmit = async contact => {
@@ -107,7 +107,7 @@ export const ContactListItem = ({ id, name, number }) => {
               <FormInputName
                 {...register('name')}
                 pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                title="Name may contain only letters, apostrophe, dash and spaces."
                 required
                 autoComplete="off"
               />
